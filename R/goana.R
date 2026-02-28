@@ -91,8 +91,8 @@ goana.default <- function(de, universe = NULL, species = "Hs", null.prob = NULL,
 #	Created 20 June 2014.  Last modified 11 Sep 2022.
 {
 #	Get access to package of GO terms
-	suppressPackageStartupMessages(OK <- requireNamespace("GO.db",quietly=TRUE))
-	if(!OK) stop("GO.db package required but is not installed (or can't be loaded)")
+	suppressPackageStartupMessages(OK <- requireNamespace("GO.db3",quietly=TRUE))
+	if(!OK) stop("GO.db3 package required but is not installed (or can't be loaded)")
 
 #	Get access to required annotation functions
 	suppressPackageStartupMessages(OK <- requireNamespace("AnnotationDbi",quietly=TRUE))
@@ -251,7 +251,7 @@ goana.default <- function(de, universe = NULL, species = "Hs", null.prob = NULL,
 
 #	Assemble output
 	GOID <- rownames(S)
-	TERM <- suppressMessages(AnnotationDbi::select(GO.db::GO.db,keys=GOID,columns="TERM"))
+	TERM <- suppressMessages(AnnotationDbi::select(GO.db3::GO.db(),keys=GOID,columns="TERM"))
 	m <- match(GOID,GeneID.PathID[,2])
 	Ont <- GeneID.PathID[m,3]
 	Results <- data.frame(Term=TERM[,2], Ont=Ont, S, PValue, stringsAsFactors=FALSE)
