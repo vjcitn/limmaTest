@@ -251,7 +251,7 @@ goana.default <- function(de, universe = NULL, species = "Hs", null.prob = NULL,
 
 #	Assemble output
 	GOID <- rownames(S)
-	TERM <- suppressMessages(AnnotationDbi::select(GO.db3::GO.db(),keys=GOID,columns="TERM"))
+	TERM <- suppressMessages(AnnotationDbi::select(GO.db3::GO.db,keys=GOID,columns="TERM"))
 	m <- match(GOID,GeneID.PathID[,2])
 	Ont <- GeneID.PathID[m,3]
 	Results <- data.frame(Term=TERM[,2], Ont=Ont, S, PValue, stringsAsFactors=FALSE)
